@@ -3,7 +3,7 @@
 This is a custom (and in progress) Python implementation of the well-known mesh simplification algorithm proposed by M. Garland & P. S. Heckbert in 1997. It is based on a quadric edge-collapse strategy, which iteratively contracts vertex pairs using quadrics to minimize the error with the original mesh.
 
 <div align="center">
-  <p><img src="doc/example_bunny.png" width="75%"></p>
+  <p><img src="docs/example_bunny.png" width="75%"></p>
 </div>
 
 This implementation tries to "keep things as simple as possible", limiting the use of third-party libraries. It is currently limited to triangular meshes and does not take the resulting mesh quality into account yet.
