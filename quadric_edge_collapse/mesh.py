@@ -100,4 +100,4 @@ class Mesh:
         """Edge list (oriented!)"""
 
         return np.unique(self.faces_edges, axis=0)
-
+    

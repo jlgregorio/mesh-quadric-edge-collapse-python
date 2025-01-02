@@ -9,7 +9,7 @@ if __name__=="__main__":
     mesh = Mesh(vertices, faces)
 
     # Simplify mesh
-    collapsed_mesh = quadric_edge_collapse_decimation(mesh, 1000)
+    collapsed_mesh = quadric_edge_collapse_decimation(mesh, 2000)
 
     # Save new mesh
     save_off("bunny_simplified.off", collapsed_mesh)
