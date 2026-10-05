@@ -1,4 +1,4 @@
-# Explanation
+# (Moved to docs/algorithm.md)
 
 This is a tentative to explain how the quadric edge collapse algorithm works.
 
