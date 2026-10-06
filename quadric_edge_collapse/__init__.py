@@ -1,2 +1,2 @@
 from .mesh import Mesh
-from .quadric_edge_collapse_tri import quadric_edge_collapse_decimation
+from .quadric_edge_collapse_simple import quadric_edge_collapse_decimation
