@@ -3,10 +3,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from quadric_edge_collapse import Mesh, quadric_edge_collapse_decimation
 from utils import load_off
-
-
+from quadric_edge_collapse import Mesh, quadric_edge_collapse_decimation
 from quadric_edge_collapse.quadric_edge_collapse_tri import compute_initial_quadrics
 
 class TestCollapseBunny(unittest.TestCase):

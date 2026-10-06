@@ -1,10 +1,14 @@
 import unittest
-import numpy as np
 import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tempfile
+
+import numpy as np
+
 from quadric_edge_collapse.mesh import Mesh
-from quadric_edge_collapse.quadric_edge_collapse_tri import quadric_edge_collapse_decimation, compute_initial_quadrics
 from utils.off_format import load_off, save_off
+
 
 class TestMesh(unittest.TestCase):
     def setUp(self):
@@ -16,9 +20,9 @@ class TestMesh(unittest.TestCase):
             [0, 0, 1]
         ])
         self.faces = np.array([
-            [0, 1, 2],
+            [0, 2, 1],
             [0, 1, 3],
-            [0, 2, 3],
+            [0, 3, 2],
             [1, 2, 3]
         ])
         self.mesh = Mesh(self.vertices, self.faces)
@@ -57,26 +61,6 @@ class TestMesh(unittest.TestCase):
         self.assertEqual(v.shape, (4, 3))
         self.assertEqual(f.shape, (4, 3))
 
-class TestQuadricError(unittest.TestCase):
-    def setUp(self):
-        vertices = np.array([
-            [0, 0, 0],
-            [1, 0, 0],
-            [0, 1, 0],
-            [0, 0, 1]
-        ])
-        faces = np.array([
-            [0, 1, 2],
-            [0, 1, 3],
-            [0, 2, 3],
-            [1, 2, 3]
-        ])
-        self.mesh = Mesh(vertices, faces)
-
-    def test_initial_quadrics(self):
-        Q = compute_initial_quadrics(self.mesh)
-        self.assertEqual(Q.shape, (4, 4, 4))
-        self.assertTrue(np.allclose(Q, Q.transpose(0,2,1)))  # Should be symmetric
 
 if __name__ == "__main__":
     unittest.main()
