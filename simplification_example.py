@@ -1,5 +1,5 @@
 
-from quadric_edge_collapse import Mesh, quadric_edge_collapse_decimation
+from quadric_edge_collapse import Mesh, QuadricEdgeCollapseSimplifier
 from utils import load_off, save_off
 
 if __name__=="__main__":
@@ -9,7 +9,8 @@ if __name__=="__main__":
     mesh = Mesh(vertices, faces)
 
     # Simplify mesh
-    collapsed_mesh = quadric_edge_collapse_decimation(mesh, 2000)
+    simplifier = QuadricEdgeCollapseSimplifier(mesh, 2000)
+    collapsed_mesh = simplifier.simplify()
 
     # Save new mesh
     save_off("bunny_simplified.off", collapsed_mesh)

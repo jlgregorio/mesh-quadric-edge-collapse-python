@@ -4,7 +4,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils import load_off
-from quadric_edge_collapse import Mesh, quadric_edge_collapse_decimation
+from quadric_edge_collapse import Mesh, QuadricEdgeCollapseSimplifier
 from quadric_edge_collapse.quadric_edge_collapse_simple import compute_initial_quadrics
 
 class TestCollapseBunny(unittest.TestCase):
@@ -15,7 +15,8 @@ class TestCollapseBunny(unittest.TestCase):
         target = 8140
         vertices, faces = load_off(DATA_DIR / "stanford_bunny.off")
         mesh = Mesh(vertices, faces)
-        collapsed_mesh = quadric_edge_collapse_decimation(mesh, target)
+        simplifier = QuadricEdgeCollapseSimplifier(mesh, target)
+        collapsed_mesh = simplifier.simplify()
         self.assertEqual(collapsed_mesh.vertices_number, target)
 
 class TestCollapseSynthetic(unittest.TestCase):
@@ -36,7 +37,8 @@ class TestCollapseSynthetic(unittest.TestCase):
         self.mesh = Mesh(self.vertices, self.faces)
 
     def test_simplification(self):
-        collapsed = quadric_edge_collapse_decimation(self.mesh, 3)
+        simplifier = QuadricEdgeCollapseSimplifier(self.mesh, 3)
+        collapsed = simplifier.simplify()
         self.assertEqual(collapsed.vertices_number, 3)
         self.assertTrue(collapsed.faces_number <= 4)
 
