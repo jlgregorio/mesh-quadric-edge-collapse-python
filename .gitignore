@@ -1,0 +1,5 @@
+# files
+*.pyc
+*/__pycache__
+# folders
+.vscode
